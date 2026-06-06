@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GeneCare - Inheritance Calculator</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+```
+<div class="logo">
+    🧬 GeneCare
+</div>
+
+<div class="user-profile">
+    Inheritance Calculator
+</div>
+```
+
+</div>
+
+<div class="symptom-container">
+
+```
+<h1>🧬 Genetic Inheritance Calculator</h1>
+
+<p>
+    Predict the probability of inheritance based on parental genetic status
+</p>
+
+<form method="POST">
+
+    <label>👨 Father's Name</label>
+
+    <input
+        type="text"
+        name="father_name"
+        placeholder="Enter Father's Name"
+        required>
+
+    <br><br>
+
+    <label>Father Genetic Status</label>
+
+    <select name="father">
+
+        <option>Normal</option>
+        <option>Carrier</option>
+        <option>Affected</option>
+
+    </select>
+
+    <br><br>
+
+    <label>👩 Mother's Name</label>
+
+    <input
+        type="text"
+        name="mother_name"
+        placeholder="Enter Mother's Name"
+        required>
+
+    <br><br>
+
+    <label>Mother Genetic Status</label>
+
+    <select name="mother">
+
+        <option>Normal</option>
+        <option>Carrier</option>
+        <option>Affected</option>
+
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Calculate Inheritance
+    </button>
+
+</form>
+
+{% if normal is not none %}
+
+<div class="result-card">
+
+    <h2>🧬 Prediction Result</h2>
+
+    <p>
+        <strong>Father:</strong>
+        {{ request.form['father_name'] }}
+        ({{ request.form['father'] }})
+    </p>
+
+    <p>
+        <strong>Mother:</strong>
+        {{ request.form['mother_name'] }}
+        ({{ request.form['mother'] }})
+    </p>
+
+    <hr style="margin:20px 0;">
+
+    <p>
+        ✅ Normal Child :
+        <strong>{{ normal }}%</strong>
+    </p>
+
+    <p>
+        🟡 Carrier Child :
+        <strong>{{ carrier }}%</strong>
+    </p>
+
+    <p>
+        🔴 Affected Child :
+        <strong>{{ affected }}%</strong>
+    </p>
+
+</div>
+
+{% endif %}
+```
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>GeneCare Symptom Checker</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <div class="logo">
+        🧬 GeneCare
+    </div>
+
+    <div class="user-profile">
+        Symptom Checker
+    </div>
+
+</div>
+
+<div class="symptom-container">
+
+    <h1>🩸 Symptom Checker</h1>
+
+    <p>
+        Select symptoms and analyze risk
+    </p>
+
+    <form method="POST">
+
+        <label>
+            <input type="checkbox"
+                   name="symptoms"
+                   value="Fatigue">
+            Fatigue
+        </label>
+
+        <label>
+            <input type="checkbox"
+                   name="symptoms"
+                   value="Pale Skin">
+            Pale Skin
+        </label>
+
+        <label>
+            <input type="checkbox"
+                   name="symptoms"
+                   value="Joint Pain">
+            Joint Pain
+        </label>
+
+        <label>
+            <input type="checkbox"
+                   name="symptoms"
+                   value="Dizziness">
+            Dizziness
+        </label>
+
+        <label>
+            <input type="checkbox"
+                   name="symptoms"
+                   value="Shortness of Breath">
+            Shortness of Breath
+        </label>
+
+        <label>
+            <input type="checkbox"
+                   name="symptoms"
+                   value="Frequent Infections">
+            Frequent Infections
+        </label>
+
+        <button type="submit">
+
+            Analyze Risk
+
+        </button>
+
+    </form>
+
+    {% if risk %}
+
+<div class="result-card">
+
+    <h2>
+        Assessment Result
+    </h2>
+
+    <h3>
+        Risk Level
+    </h3>
+
+    <span class="risk-badge">
+        {{ risk }}
+    </span>
+
+    <p>
+        {{ disease }}
+    </p>
+
+    <br>
+
+    <a href="/generate-report">
+
+        <button type="button">
+
+            📄 Download PDF Report
+
+        </button>
+
+    </a>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+
+</html>

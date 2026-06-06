@@ -1,0 +1,156 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>GeneCare Analytics</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="analytics-wrapper">
+
+    <h1 class="analytics-title">
+        📊 Analytics Dashboard
+    </h1>
+
+    <div class="stats-grid">
+
+        <div class="modern-stat-card">
+            <h3>Total Reports Generated</h3>
+            <h2>{{ total_reports }}</h2>
+        </div>
+
+        <div class="modern-stat-card">
+            <h3>🟢 Low Risk Patients</h3>
+            <h2>{{ low_count }}</h2>
+        </div>
+
+        <div class="modern-stat-card">
+            <h3>🟡 Medium Risk Patients</h3>
+            <h2>{{ medium_count }}</h2>
+        </div>
+
+        <div class="modern-stat-card">
+            <h3>🔴 High Risk Patients</h3>
+            <h2>{{ high_count }}</h2>
+        </div>
+
+    </div>
+
+    <div class="charts-container">
+
+        <div class="chart-box">
+
+            <h2>Risk Distribution</h2>
+
+            <p style="text-align:center; color:#64748b;">
+                Distribution of patients by risk level
+            </p>
+
+            <canvas id="pieChart"></canvas>
+
+        </div>
+
+        <div class="chart-box">
+
+            <h2>Patient Statistics</h2>
+
+            <p style="text-align:center; color:#64748b;">
+                Number of patients in each category
+            </p>
+
+            <canvas id="barChart"></canvas>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+new Chart(
+document.getElementById('pieChart'),
+{
+    type:'doughnut',
+
+    data:{
+        labels:[
+            'Low Risk',
+            'Medium Risk',
+            'High Risk'
+        ],
+
+        datasets:[{
+            data:[
+                {{ low_count }},
+                {{ medium_count }},
+                {{ high_count }}
+            ],
+
+            backgroundColor:[
+                '#22c55e',
+                '#f59e0b',
+                '#ef4444'
+            ]
+        }]
+    }
+});
+
+new Chart(
+document.getElementById('barChart'),
+{
+    type:'bar',
+
+    data:{
+        labels:[
+            'Low Risk',
+            'Medium Risk',
+            'High Risk'
+        ],
+
+        datasets:[{
+            label:'Number of Patients',
+
+            data:[
+                {{ low_count }},
+                {{ medium_count }},
+                {{ high_count }}
+            ],
+
+            backgroundColor:[
+                '#22c55e',
+                '#f59e0b',
+                '#ef4444'
+            ]
+        }]
+    },
+
+    options:{
+        responsive:true,
+
+        plugins:{
+            legend:{
+                display:true
+            }
+        }
+    }
+});
+
+</script>
+
+</body>
+</html>
